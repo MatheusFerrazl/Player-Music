@@ -1,0 +1,21 @@
+.item {
+    width: 300px;
+    height: 350px;
+    margin-bottom: 13vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.images-box {
+    height: 30vh;
+    cursor: pointer;
+    margin-bottom: 2vh;
+    border-radius: 15px;
+    
+}
+
+.images-box:hover {
+    transform: scale(1.1);
+
+}

@@ -1,0 +1,24 @@
+.title {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 6vh;
+}
+
+.image-box {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.image-cover {
+    height: 40vh;
+    border-radius: 15px;
+}
+
+.name-song {
+    margin-top: 40px ;
+    margin-bottom: 0;
+    font-size: 2.5vh;
+}
+
