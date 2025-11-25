@@ -96,10 +96,11 @@ function App() {
 
   // useState para setar a música nova que irá tocar  
   const [currentSong, setCurrentSong] = useState({
-    songCurrent : playList[0].song,
-    songImage : playList[0].image,
-    nameTitle : playList[0].name,
-    nameAuthor : playList[0].author
+    songIndex: playList[0].id,
+    songCurrent: playList[0].song,
+    songImage: playList[0].image,
+    nameTitle: playList[0].name,
+    nameAuthor: playList[0].author
   })
 
 
@@ -114,9 +115,8 @@ function App() {
   // useState para mudar o valor da variável isPaused caso   
   const [isPaused, setIsPaused] = useState(true);
 
-
   function play() {
-    
+
     if (isPaused === true) {
       audioTag.current.play()
       setImagePlay(imagePlay => "./images/pause.png")
@@ -130,7 +130,53 @@ function App() {
       setIsPaused(IsPaused => true)
 
     }
+  }
 
+  function backMusic() {
+    if (currentSong.songIndex === 0) {
+      setCurrentSong({
+        songIndex: playList[8].id,
+        songCurrent: playList[8].song,
+        songImage: playList[8].image,
+        nameTitle: playList[8].name,
+        nameAuthor: playList[8].author
+      })
+      play()
+    } else {
+      let indexMusic = currentSong.songIndex
+      setCurrentSong({
+        songIndex: playList[indexMusic - 1].id,
+        songCurrent: playList[indexMusic - 1].song,
+        songImage: playList[indexMusic - 1].image,
+        nameTitle: playList[indexMusic - 1].name,
+        nameAuthor: playList[indexMusic - 1].author
+      })
+        play()
+    }
+  }
+
+  function forwardMusic() {
+    if (currentSong.songIndex === 8) {
+      setCurrentSong({
+        songIndex: playList[0].id,
+        songCurrent: playList[0].song,
+        songImage: playList[0].image,
+        nameTitle: playList[0].name,
+        nameAuthor: playList[0].author
+      })
+      play()
+
+    } else {
+      let indexMusic = currentSong.songIndex
+      setCurrentSong({
+        songIndex: playList[indexMusic + 1].id,
+        songCurrent: playList[indexMusic + 1].song,
+        songImage: playList[indexMusic + 1].image,
+        nameTitle: playList[indexMusic + 1].name,
+        nameAuthor: playList[indexMusic + 1].author
+      })
+      play()
+    }
   }
 
   return (
@@ -143,6 +189,8 @@ function App() {
         nameAuthor={currentSong.nameAuthor}
       ></Content>
       <Controller
+        forwardFunction={forwardMusic}
+        backFunction={backMusic}
         playFunction={play}
         imagePlay={imagePlay}>
       </Controller>
@@ -150,30 +198,25 @@ function App() {
       <AllSongs >
         {playList.map(songItem => {
           return (
-            <Song 
-              currentSongState={currentSong}
+            <Song
               key={songItem.id}
               cover={songItem.image}
               songName={songItem.name}
               authorName={songItem.author}
               selectedMusic={function selectedMusic() {
-                console.log(songItem.id)
-                setCurrentSong(currentsong => currentSong.songCurrent = playList[songItem.id].song,
-                                                  currentsong.songImage = playList[songItem.id].image,
-                                                  currentSong.nameTitle = playList[songItem.id].name
-                )
-               
-                setNameTitle(nameTitle => songItem.name)
-                setNameAuthor(nameAuthor => songItem.author)
-                console.log(isPaused)
-                console.log(currentSong)
-                play()
 
+                setCurrentSong({
+                  songIndex: songItem.id,
+                  songCurrent: songItem.song,
+                  songImage: songItem.image,
+                  nameTitle: songItem.name,
+                  nameAuthor: songItem.author
+                })
+                play()
               }}>
             </Song>)
         })}
       </AllSongs>
-
     </>
   )
 }
