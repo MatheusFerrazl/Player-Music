@@ -91,6 +91,15 @@ function App() {
     song: "./songs/Rhythm is a dancer.mp3",
     image: "./images/Rhythm is a dancer.jpg",
     style: "90 hits"
+  },
+
+  {
+    id: 9,
+    name: "In the end",
+    author: "Linkin Park",
+    song: "./songs/In the end.mp3",
+    image: "./images/In the end.jpg",
+    style: "Nu Metal"
   }
   ]
 
@@ -129,7 +138,7 @@ function App() {
   }
 
   function randomMusicMode() {
-   let randomNumber = Math.floor(Math.random() * 9)
+   let randomNumber = Math.floor(Math.random() * playList.length)
     setCurrentSong(
       {
         songIndex: playList[randomNumber].id,
