@@ -1,19 +1,63 @@
+/* App.css - base global e container */
+:root{
+  --bg-1: #292929;
+  --bg-2: #000000;
+  --text: #f5f7fb;
+  --card-radius: 12px;
+  --gap-lg: 4rem;
+  --gap-md: 2rem;
+  --max-content-width: 1100px;
+}
+
+* { box-sizing: border-box; }
+
+html,body,#root {
+  height: 100%;
+}
+
 body {
-    font-family: "Rubik", sans-serif;
-    margin: 0;
-    background-image: linear-gradient(90deg, rgb(41, 41, 41), rgb(0, 0, 0));
-    color: aliceblue;
+  font-family: "Rubik", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  margin: 0;
+  background-image: linear-gradient(90deg, var(--bg-1), var(--bg-2));
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.3;
 }
 
+/* container central */
+.app-container{
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--gap-md);
+}
+
+/* All songs title responsive */
 .all-song-title {
-    text-align: center;
-    font-size: 6vh;
-    margin-top: 10vh;
-   
+  text-align: center;
+  font-size: clamp(1.6rem, 4.5vw, 3.4rem); /* scales between mobile and desktop */
+  margin: 2rem 0 0.75rem 0;
 }
 
+/* audio element responsive */
 .audio-tag {
-    width: 50vh;
+  display: block;
+  margin: 0.4rem auto;
 }
 
+/* small helper */
+.center {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 
+@media (max-width:420px) {
+  .main-commands { gap: 1rem; }
+  .all-song-title { margin-top: 1rem; font-size: 1.8rem; }
+  .image-cover { max-height: 50vh; }
+}
