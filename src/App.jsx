@@ -197,13 +197,13 @@ function App() {
     }
   }
 
-  return (
-    <>
+   return (
+    <div className="app-container">
       <Content
         image={currentSong.songImage}
         nameTitle={currentSong.nameTitle}
         nameAuthor={currentSong.nameAuthor}
-      ></Content>
+      />
       <Controller
         functionRandomNumber={randomMusicMode}
         functionToggleRandomMode={toggleRandomMode}
@@ -213,30 +213,31 @@ function App() {
         imagePlay={imagePlay}>
         <audio onEnded={forwardMusic} className='audio-tag' autoPlay={false} controls ref={audioTag} src={currentSong.songCurrent}></audio>
       </Controller>
+
       <h1 className='all-song-title'>All songs</h1>
+
       <AllSongs >
-        {playList.map(songItem => {
-          return (
-            <Song
-              key={songItem.id}
-              cover={songItem.image}
-              songName={songItem.name}
-              authorName={songItem.author}
-              selectedMusic={function selectedMusic() {
-                audioTag.current.pause()
-                audioTag.current.currentTime = 0
-                setCurrentSong({
-                  songIndex: songItem.id,
-                  songCurrent: songItem.song,
-                  songImage: songItem.image,
-                  nameTitle: songItem.name,
-                  nameAuthor: songItem.author
-                })
-              }}>
-            </Song>)
-        })}
+        {playList.map(songItem => (
+          <Song
+            key={songItem.id}
+            cover={songItem.image}
+            songName={songItem.name}
+            authorName={songItem.author}
+            selectedMusic={() => {
+              audioTag.current.pause()
+              audioTag.current.currentTime = 0
+              setCurrentSong({
+                songIndex: songItem.id,
+                songCurrent: songItem.song,
+                songImage: songItem.image,
+                nameTitle: songItem.name,
+                nameAuthor: songItem.author
+              })
+            }}
+          />
+        ))}
       </AllSongs>
-    </>
+    </div>
   )
 }
 
