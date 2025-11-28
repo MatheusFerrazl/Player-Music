@@ -1,19 +1,21 @@
 import './Controller.css'
 
-function Controller({playFunction, imagePlay, forwardFunction, backFunction}) {
-    return(
+function Controller({ forwardFunction, backFunction, children, functionToggleRandomMode, randomState, functionRandomNumber}) {
+    return (
         <div className='controller-box'>
 
-            <div className='progress-bar'></div>
-
             <div className='commands'>
+                <div className='main-commands'>
+                    <img className='button-controller' onClick={backFunction} src="./images/back.png" alt="" />
+                    <div>
+                        {children}
+                    </div>
+                    <img className='button-controller' onClick={randomState ? functionRandomNumber : forwardFunction } src="./images/forward.png" alt="" />
+                </div>
+                <img onClick={functionToggleRandomMode} className='button-controller-random' src={randomState ? './images/random-activated.png' : './images/random.png'} alt="" />
 
-                <img id='back' onClick={backFunction} src="./images/back.png" alt="" />
-
-                <img onClick={playFunction} id='play' src={imagePlay} alt="" />
-
-                <img id='forward' onClick={forwardFunction} src="./images/forward.png" alt="" />
             </div>
+
         </div>
     )
 }

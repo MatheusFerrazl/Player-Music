@@ -13,15 +13,45 @@
 
 .commands {
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
-    gap: 5vh;
-
+    margin-top: 4vh;
     & img {
-        margin-top: 4vh;
         height: 8vh;
         cursor: pointer;
     }
    
 }
+
+.button-controller {
+
+}
+
+.button-controller:hover {
+    transform: scale(1.1);
+}
+
+.main-commands {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    gap: 5vh;
+    margin-left: 16vh;
+    margin-right: 8vh;
+
+    & img {
+        cursor: pointer;
+    }
+   
+}
+
+.button-controller-random {
+
+}
+
+.button-controller-random:hover {
+    transform: scale(1.1);
+}
+
+
 

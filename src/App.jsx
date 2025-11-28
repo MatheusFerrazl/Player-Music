@@ -115,33 +115,54 @@ function App() {
   // useState para mudar o valor da variável isPaused caso   
   const [isPaused, setIsPaused] = useState(true);
 
-  function play() {
 
-    if (isPaused === true) {
-      audioTag.current.play()
-      setImagePlay(imagePlay => "./images/pause.png")
-      setIsPaused(IsPaused => false)
-    }
+  // state que salvará o caminho da imagem atual
+  const [randomState, setRandomState] = useState(false)
 
-    else {
 
-      audioTag.current.pause()
-      setImagePlay(imagePlay => "./images/play.png")
-      setIsPaused(IsPaused => true)
-
+  function toggleRandomMode() {
+    if (randomState === false) {
+      setRandomState(randomState => true)
+    } else {
+      setRandomState(randomState => false)
     }
   }
+
+  function randomMusicMode() {
+   let randomNumber = Math.floor(Math.random() * 9)
+    setCurrentSong(
+      {
+        songIndex: playList[randomNumber].id,
+        songCurrent: playList[randomNumber].song,
+        songImage: playList[randomNumber].image,
+        nameTitle: playList[randomNumber].name,
+        nameAuthor: playList[randomNumber].author
+      })
+  }
+
+  const isFirstMusic = useRef(true)
+
+  useEffect(() => {
+
+    if (isFirstMusic.current === true) {
+      isFirstMusic.current = false
+
+      return
+    }
+    audioTag.current.play()
+
+  }, [currentSong])
 
   function backMusic() {
     if (currentSong.songIndex === 0) {
       setCurrentSong({
-        songIndex: playList[8].id,
-        songCurrent: playList[8].song,
-        songImage: playList[8].image,
-        nameTitle: playList[8].name,
-        nameAuthor: playList[8].author
+        songIndex: playList[playList.length - 1].id,
+        songCurrent: playList[playList.length - 1].song,
+        songImage: playList[playList.length - 1].image,
+        nameTitle: playList[playList.length - 1].name,
+        nameAuthor: playList[playList.length - 1].author
       })
-      play()
+
     } else {
       let indexMusic = currentSong.songIndex
       setCurrentSong({
@@ -151,12 +172,11 @@ function App() {
         nameTitle: playList[indexMusic - 1].name,
         nameAuthor: playList[indexMusic - 1].author
       })
-        play()
     }
   }
 
   function forwardMusic() {
-    if (currentSong.songIndex === 8) {
+    if (currentSong.songIndex === (playList.length - 1)) {
       setCurrentSong({
         songIndex: playList[0].id,
         songCurrent: playList[0].song,
@@ -164,7 +184,6 @@ function App() {
         nameTitle: playList[0].name,
         nameAuthor: playList[0].author
       })
-      play()
 
     } else {
       let indexMusic = currentSong.songIndex
@@ -175,24 +194,24 @@ function App() {
         nameTitle: playList[indexMusic + 1].name,
         nameAuthor: playList[indexMusic + 1].author
       })
-      play()
     }
   }
 
   return (
     <>
-      <audio ref={audioTag} src={currentSong.songCurrent}></audio>
-
       <Content
         image={currentSong.songImage}
         nameTitle={currentSong.nameTitle}
         nameAuthor={currentSong.nameAuthor}
       ></Content>
       <Controller
+        functionRandomNumber={randomMusicMode}
+        functionToggleRandomMode={toggleRandomMode}
+        randomState={randomState}
         forwardFunction={forwardMusic}
         backFunction={backMusic}
-        playFunction={play}
         imagePlay={imagePlay}>
+        <audio onEnded={forwardMusic} className='audio-tag' autoPlay={false} controls ref={audioTag} src={currentSong.songCurrent}></audio>
       </Controller>
       <h1 className='all-song-title'>All songs</h1>
       <AllSongs >
@@ -204,7 +223,8 @@ function App() {
               songName={songItem.name}
               authorName={songItem.author}
               selectedMusic={function selectedMusic() {
-
+                audioTag.current.pause()
+                audioTag.current.currentTime = 0
                 setCurrentSong({
                   songIndex: songItem.id,
                   songCurrent: songItem.song,
@@ -212,7 +232,6 @@ function App() {
                   nameTitle: songItem.name,
                   nameAuthor: songItem.author
                 })
-                play()
               }}>
             </Song>)
         })}
