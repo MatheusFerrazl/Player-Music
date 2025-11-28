@@ -1,13 +1,12 @@
-import "./Song.css"
+import "./Song.css";
 
-function Song({currentSongState, cover, songName, selectedMusic }) {
-
-    return (
-        <div className='item'>
-            <img onClick={selectedMusic} className="images-box" src={cover} alt="" />
-            <p>{songName}</p>
-        </div>
-    )
+function Song({ currentSong: { image, name }, onSelectMusic }) {
+  return (
+    <div className="item">
+      <img onClick={onSelectMusic} className="images-box" src={image} alt="" />
+      <p>{name}</p>
+    </div>
+  );
 }
 
-export default Song
+export default Song;
