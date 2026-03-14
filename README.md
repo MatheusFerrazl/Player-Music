@@ -1,16 +1,81 @@
-# React + Vite
+# 🎵 React Music Player
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and interactive music player built with **React** as part of my journey learning modern frontend development.
 
-Currently, two official plugins are available:
+This project was created to practice **component-based architecture**, **state management**, and building interactive user interfaces with React.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* Play and pause music
+* Track progress bar
+* Song navigation
+* Responsive user interface
+* Clean component structure
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Technologies Used
+
+* **React**
+* **JavaScript (ES6+)**
+* **CSS**
+* **HTML**
+
+---
+
+## 📚 What I Learned
+
+While building this project I practiced:
+
+* React component structure
+* Managing state with hooks
+* Handling user interactions
+* Organizing frontend code
+* Creating reusable UI components
+
+---
+
+## 💻 Getting Started
+
+To run this project locally:
+
+```bash
+git clone https://github.com/MatheusFerrazl/YOUR-REPOSITORY.git
+cd YOUR-REPOSITORY
+npm install
+npm run dev
+```
+
+Then open:
+
+```
+http://localhost:5173
+```
+
+---
+
+## 📁 Project Structure
+
+```
+src
+ ├ components
+ ├ assets
+ ├ App.jsx
+ └ main.jsx
+```
+
+---
+
+## 🎯 Purpose of the Project
+
+This project was developed for **learning purposes**, helping me understand how React works in real applications and how to structure a frontend project.
+
+---
+
+## 👨‍💻 Author
+
+**Matheus Ferraz**
+
+Frontend developer in training focused on building modern web applications.
